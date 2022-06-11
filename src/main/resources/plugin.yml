@@ -1,0 +1,9 @@
+name: ThermalFunTestAddon
+version: '${version}'
+main: com.github.mmm1245.thermalfuntestaddon.ThermalFunTestAddon
+api-version: 1.18
+depend:
+  - Slimefun
+  - ThermalFun
+loadbefore:
+  - ThermalFun

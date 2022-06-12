@@ -1,16 +1,17 @@
 package com.github.mmm1245.thermalfuntestaddon;
 
 import com.github.mmm1245.thermalfun.ThermalFunMain;
-import com.github.mmm1245.thermalfun.abilities.Abilities;
-import com.github.mmm1245.thermalfun.abilities.Ability;
-import com.github.mmm1245.thermalfun.items.CountUpgradeItem;
+import com.github.mmm1245.thermalfun.api.Ability;
+import com.github.mmm1245.thermalfun.api.CountUpgradeItem;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nonnull;
@@ -21,7 +22,7 @@ public final class ThermalFunTestAddon extends JavaPlugin implements SlimefunAdd
     @Override
     public void onEnable() {
         Ability ability = new Ability(new NamespacedKey(this, "test_ability"), "Test ability", 65, e -> {
-            if(Abilities.checkHasHeatAndDecrease(e.getPlayer(), 65))
+            if(Ability.checkHasHeatAndDecrease(e.getPlayer(), 65))
                 e.getPlayer().sendMessage("Used ability");
         }, null);
         ability.register();
@@ -36,13 +37,12 @@ public final class ThermalFunTestAddon extends JavaPlugin implements SlimefunAdd
                 "TEST_UPGRADE",
                 Material.SKULL_BANNER_PATTERN,
                 "&cTest Upgrade",
+                RecipeType.BARTER_DROP,new ItemStack[9],
                 new CountUpgradeItem.EntityKillStat[]{new CountUpgradeItem.EntityKillStat(
                         new NamespacedKey(this, "stored_mob"), 5, EntityType.SLIME)
                 }
         );
         testUpgrade.register(this);
-
-        ThermalFunMain.getCommands().THERMAL_ABILITIES.reloadTabComplete();
     }
     @Override
     public void onDisable() {

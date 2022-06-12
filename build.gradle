@@ -21,7 +21,7 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT'
     compileOnly 'com.github.Slimefun:Slimefun4:RC-31'
-    implementation 'com.github.mmm1245:ThermalFun:4f712e3035'
+    implementation 'com.github.mmm1245:ThermalFun:2db2d30fda'
 }
 
 def targetJavaVersion = 17
